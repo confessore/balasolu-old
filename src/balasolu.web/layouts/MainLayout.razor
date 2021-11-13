@@ -1,0 +1,26 @@
+@inherits LayoutComponentBase
+
+<div class="container-fluid">
+    <div class="d-flex flex-column justify-content-center align-content-center">
+        <div class="d-flex flex-row justify-content-center align-content-center">
+            <TopBar />
+        </div>
+        <hr />
+        <div class="d-flex flex-column justify-content-center align-content-center">
+            <Cookies />
+        </div>
+        <div class="d-flex flex-row justify-content-center align-content-center">
+            @Body
+        </div>
+        <div class="d-flex flex-row justify-content-center align-content-center">
+            <Disclaimer />
+        </div>
+        <div class="d-flex flex-row justify-content-center align-content-center">
+            <Copyright />
+        </div>
+    </div>
+</div>
+
+@code {
+
+}

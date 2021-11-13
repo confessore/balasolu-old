@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "balasolu.web": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "applicationUrl": "http://localhost:5000"
+    }
+  }
+}

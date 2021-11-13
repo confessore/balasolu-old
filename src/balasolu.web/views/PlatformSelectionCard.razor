@@ -1,0 +1,108 @@
+﻿@inject IHttpContextAccessor _httpContextAccessor
+@inject IDbContextFactory<DefaultContext> _contextFactory
+
+<div class="card" style="width: auto">
+    <div class="card-header bg-white">
+        <h3 class="card-title text-center"><strong>@model.DiscriminatedUsername</strong></h3>
+    </div>
+    <div class="card-body">
+        <div class="container-fluid">
+            <p class="card-title text-center"><strong>what platforms are available to you?</strong></p>
+            <EditForm Model="model" class="d-flex flex-row justify-content-center align-content-center">
+                <div class="d-flex flex-column justify-content-center justify-content-center">
+                    <div class="text-center"><InputCheckbox @bind-Value="model.PC" @oninput="async args => { await UpdatePCAsync(args); }" /></div>
+                    <p class="card-text text-center p-1 m-1">windoez</p>
+                    <div class="text-center"><img src="/images/windows.svg" style="width: 32px; height: 32px;" /></div>
+                </div>
+                <div class="d-flex flex-column justify-content-center justify-content-center">
+                    <div class="text-center"><InputCheckbox @bind-Value="model.Switch" @oninput="async args => { await UpdateSwitchAsync(args); }" /></div>
+                    <p class="card-text text-center p-1 m-1">switch</p>
+                    <div class="text-center"><img src="/images/switch.svg" style="width: 32px; height: 32px;" /></div>
+                </div>
+                <div class="d-flex flex-column justify-content-center align-content-center">
+                    <div class="text-center"><InputCheckbox @bind-Value="model.Xbox" @oninput="async args => { await UpdateXboxAsync(args); }" /></div>
+                    <p class="card-text text-center p-1 m-1">xbox</p>
+                    <div class="text-center"><img src="/images/xbox.svg" style="width: 32px; height: 32px;" /></div>
+                </div>
+                <div class="d-flex flex-column justify-content-center align-content-center">
+                    <div class="text-center"><InputCheckbox @bind-Value="model.PlayStation" @oninput="async args => { await UpdatePlayStationAsync(args); }" /></div>
+                    <p class="card-text text-center p-1 m-1">playstation</p>
+                    <div class="text-center"><img src="/images/playstation.svg" style="width: 32px; height: 32px;" /></div>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string? UserId { get; set; }
+
+    PlatformSelectionCardModel model = new PlatformSelectionCardModel();
+
+    class PlatformSelectionCardModel
+    {
+        public User? User { get; set; }
+        public bool PC { get; set; }
+        public bool Switch { get; set; }
+        public bool Xbox { get; set; }
+        public bool PlayStation { get; set; }
+        public string? DiscriminatedUsername { get; set; }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = _contextFactory.CreateDbContext();
+        var user = await context.Users.Include(x => x.Account).FirstOrDefaultAsync(x => x.Id == UserId);
+        var account = (DiscordAccount?)user.Account;
+        model = new PlatformSelectionCardModel()
+        {
+            User = user,
+            PC = user.PC,
+            Switch = user.Switch,
+            Xbox = user.Xbox,
+            PlayStation = user.PlayStation,
+            DiscriminatedUsername = string.Concat(account?.Username, '#', account?.Discriminator)
+        };
+    }
+
+    public async Task UpdatePCAsync(ChangeEventArgs args)
+    {
+        var value = (bool)args.Value!;
+        model.User!.PC = value;
+        using var context = _contextFactory.CreateDbContext();
+        var user = await context.Users.FirstOrDefaultAsync(x => x.Id == UserId);
+        user.PC = value;
+        await context.SaveChangesAsync();
+    }
+
+    public async Task UpdateSwitchAsync(ChangeEventArgs args)
+    {
+        var value = (bool)args.Value!;
+        model.User!.Switch = value;
+        using var context = _contextFactory.CreateDbContext();
+        var user = await context.Users.FirstOrDefaultAsync(x => x.Id == UserId);
+        user.Switch = value;
+        await context.SaveChangesAsync();
+    }
+
+    public async Task UpdateXboxAsync(ChangeEventArgs args)
+    {
+        var value = (bool)args.Value!;
+        model.User!.Xbox = value;
+        using var context = _contextFactory.CreateDbContext();
+        var user = await context.Users.FirstOrDefaultAsync(x => x.Id == UserId);
+        user.Xbox = value;
+        await context.SaveChangesAsync();
+    }
+
+    public async Task UpdatePlayStationAsync(ChangeEventArgs args)
+    {
+        var value = (bool)args.Value!;
+        model.User!.PlayStation = value;
+        using var context = _contextFactory.CreateDbContext();
+        var user = await context.Users.FirstOrDefaultAsync(x => x.Id == UserId);
+        user.PlayStation = value;
+        await context.SaveChangesAsync();
+    }
+}

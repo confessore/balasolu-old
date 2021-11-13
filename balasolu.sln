@@ -1,0 +1,129 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31717.71
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FEB3B7D4-2BD6-4D9E-B8AA-E7A68B369EFC}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		docker-compose-debug.yml = docker-compose-debug.yml
+		docker-compose-release.yml = docker-compose-release.yml
+		docker-compose-staging.yml = docker-compose-staging.yml
+		LICENSE.md = LICENSE.md
+		nginx-debug.Dockerfile = nginx-debug.Dockerfile
+		nginx-release.Dockerfile = nginx-release.Dockerfile
+		nginx-staging.Dockerfile = nginx-staging.Dockerfile
+		README.md = README.md
+		web-debug.Dockerfile = web-debug.Dockerfile
+		web-release.Dockerfile = web-release.Dockerfile
+		web-staging.Dockerfile = web-staging.Dockerfile
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8CE32AE5-F897-40FB-AB11-0613CB4A918C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "secrets", "secrets", "{F56E6BC1-E878-4C63-BA7A-63A55A43CF52}"
+	ProjectSection(SolutionItems) = preProject
+		secrets\discord-clientid = secrets\discord-clientid
+		secrets\discord-clientid.default = secrets\discord-clientid.default
+		secrets\discord-clientsecret = secrets\discord-clientsecret
+		secrets\discord-clientsecret.default = secrets\discord-clientsecret.default
+		secrets\smtp-fromaddress = secrets\smtp-fromaddress
+		secrets\smtp-fromaddress.default = secrets\smtp-fromaddress.default
+		secrets\smtp-fromname = secrets\smtp-fromname
+		secrets\smtp-fromname.default = secrets\smtp-fromname.default
+		secrets\smtp-host = secrets\smtp-host
+		secrets\smtp-host.default = secrets\smtp-host.default
+		secrets\smtp-password = secrets\smtp-password
+		secrets\smtp-password.default = secrets\smtp-password.default
+		secrets\smtp-port = secrets\smtp-port
+		secrets\smtp-port.default = secrets\smtp-port.default
+		secrets\smtp-username = secrets\smtp-username
+		secrets\smtp-username.default = secrets\smtp-username.default
+		secrets\sql-database = secrets\sql-database
+		secrets\sql-database.default = secrets\sql-database.default
+		secrets\sql-password = secrets\sql-password
+		secrets\sql-password.default = secrets\sql-password.default
+		secrets\sql-server = secrets\sql-server
+		secrets\sql-server.default = secrets\sql-server.default
+		secrets\sql-username = secrets\sql-username
+		secrets\sql-username.default = secrets\sql-username.default
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nginx", "nginx", "{C8DBBE83-32AA-40C9-ACB6-415481728733}"
+	ProjectSection(SolutionItems) = preProject
+		nginx\nginx-debug.conf = nginx\nginx-debug.conf
+		nginx\nginx-release.conf = nginx\nginx-release.conf
+		nginx\nginx-staging.conf = nginx\nginx-staging.conf
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{73F8C2FB-29C5-49B7-B8FB-8D4E8329AFC5}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\add-migration.sh = scripts\add-migration.sh
+		scripts\define-secrets.sh = scripts\define-secrets.sh
+		scripts\docker-install.sh = scripts\docker-install.sh
+		scripts\healthcheck.sh = scripts\healthcheck.sh
+		scripts\nginx-entrypoint-debug.sh = scripts\nginx-entrypoint-debug.sh
+		scripts\nginx-entrypoint-release.sh = scripts\nginx-entrypoint-release.sh
+		scripts\nginx-entrypoint-staging.sh = scripts\nginx-entrypoint-staging.sh
+		scripts\openssl-generate.sh = scripts\openssl-generate.sh
+		scripts\purify-migrations.sh = scripts\purify-migrations.sh
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "openssl", "openssl", "{D1B5F766-59CF-4D8D-A578-AEFC63730B94}"
+	ProjectSection(SolutionItems) = preProject
+		openssl\localhost.conf = openssl\localhost.conf
+		openssl\localhost.crt = openssl\localhost.crt
+		openssl\localhost.key = openssl\localhost.key
+		openssl\localhost.pfx = openssl\localhost.pfx
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "balasolu.web", "src\balasolu.web\balasolu.web.csproj", "{C1BF199F-C707-40D4-9E78-E819A0208D1A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "balasolu", "src\balasolu\balasolu.csproj", "{9CBAABE8-ECAF-402B-835F-01F854AB3A71}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "balasolu.ui", "src\balasolu.ui\balasolu.ui.csproj", "{DCCE2868-BF09-4CCC-9A4C-C5951259577B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Staging|Any CPU = Staging|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C1BF199F-C707-40D4-9E78-E819A0208D1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1BF199F-C707-40D4-9E78-E819A0208D1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1BF199F-C707-40D4-9E78-E819A0208D1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1BF199F-C707-40D4-9E78-E819A0208D1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1BF199F-C707-40D4-9E78-E819A0208D1A}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
+		{C1BF199F-C707-40D4-9E78-E819A0208D1A}.Staging|Any CPU.Build.0 = Staging|Any CPU
+		{9CBAABE8-ECAF-402B-835F-01F854AB3A71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CBAABE8-ECAF-402B-835F-01F854AB3A71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CBAABE8-ECAF-402B-835F-01F854AB3A71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CBAABE8-ECAF-402B-835F-01F854AB3A71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CBAABE8-ECAF-402B-835F-01F854AB3A71}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
+		{9CBAABE8-ECAF-402B-835F-01F854AB3A71}.Staging|Any CPU.Build.0 = Staging|Any CPU
+		{DCCE2868-BF09-4CCC-9A4C-C5951259577B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCCE2868-BF09-4CCC-9A4C-C5951259577B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCCE2868-BF09-4CCC-9A4C-C5951259577B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCCE2868-BF09-4CCC-9A4C-C5951259577B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCCE2868-BF09-4CCC-9A4C-C5951259577B}.Staging|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCCE2868-BF09-4CCC-9A4C-C5951259577B}.Staging|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8CE32AE5-F897-40FB-AB11-0613CB4A918C} = {FEB3B7D4-2BD6-4D9E-B8AA-E7A68B369EFC}
+		{F56E6BC1-E878-4C63-BA7A-63A55A43CF52} = {FEB3B7D4-2BD6-4D9E-B8AA-E7A68B369EFC}
+		{C8DBBE83-32AA-40C9-ACB6-415481728733} = {FEB3B7D4-2BD6-4D9E-B8AA-E7A68B369EFC}
+		{73F8C2FB-29C5-49B7-B8FB-8D4E8329AFC5} = {FEB3B7D4-2BD6-4D9E-B8AA-E7A68B369EFC}
+		{D1B5F766-59CF-4D8D-A578-AEFC63730B94} = {FEB3B7D4-2BD6-4D9E-B8AA-E7A68B369EFC}
+		{C1BF199F-C707-40D4-9E78-E819A0208D1A} = {8CE32AE5-F897-40FB-AB11-0613CB4A918C}
+		{9CBAABE8-ECAF-402B-835F-01F854AB3A71} = {8CE32AE5-F897-40FB-AB11-0613CB4A918C}
+		{DCCE2868-BF09-4CCC-9A4C-C5951259577B} = {8CE32AE5-F897-40FB-AB11-0613CB4A918C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {20978F29-E3D7-4278-B20F-1FB36ED0F0DC}
+	EndGlobalSection
+EndGlobal

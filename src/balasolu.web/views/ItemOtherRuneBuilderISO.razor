@@ -1,0 +1,90 @@
+﻿@inject IDbContextFactory<DefaultContext> _contextFactory
+@inject IPostService _postService
+@inject NavigationManager _navigationManager
+
+<EditForm Model="model" class="d-flex flex-column justify-content-center align-content-center">
+    <p class="card-title text-center"><strong>choose a rune and quantity</strong></p>
+    <div class="d-flex flex-row justify-content-center justify-content-center">
+        <div class="text-center">
+            <InputSelect @bind-Value="@model.ItemOtherRuneISO">
+                @foreach (var value in Enum.GetValues<ItemOtherRune>())
+                {
+                    <option value="@value">@value.GetDescription()</option>
+                }
+            </InputSelect>
+            <InputNumber @bind-Value="@model.QuantityISO" />
+        </div>
+    </div>
+    @if (model.ItemOtherRuneISO != ItemOtherRune.Default && model.QuantityISO > 0)
+    {
+        <button class="btn btn-primary"
+                @onclick="async () => await OnClickAsync()">post</button>
+    }
+</EditForm>
+
+@code {
+    [Parameter]
+    public string? UserId { get; set; }
+
+    [Parameter]
+    public ItemType ItemTypeFT { get; set; }
+
+    [Parameter]
+    public ItemOtherType ItemOtherTypeFT { get; set; }
+
+    [Parameter]
+    public ItemOtherRune ItemOtherRuneFT { get; set; }
+
+    [Parameter]
+    public int QuantityFT { get; set; }
+
+    [Parameter]
+    public ItemType ItemTypeISO { get; set; }
+
+    [Parameter]
+    public ItemOtherType ItemOtherTypeISO { get; set; }
+
+    ItemOtherRuneBuilderISOModel model = new ItemOtherRuneBuilderISOModel();
+
+    class ItemOtherRuneBuilderISOModel
+    {
+        public ItemOtherRune ItemOtherRuneISO { get; set; }
+        public int QuantityISO { get; set; }
+        public bool Initialized { get; set; }
+    }
+
+    protected override void OnInitialized()
+    {
+        model.Initialized = true;
+    }
+
+    Item GenerateFT()
+    {
+        return new OtherItem()
+        {
+            ItemType = ItemTypeFT,
+            ItemOtherType = ItemOtherTypeFT,
+            ItemOtherBase = (ItemOtherBase)ItemOtherRuneFT,
+            Quantity = QuantityFT,
+            Name = ItemOtherRuneFT.GetDescription()
+        };
+    }
+
+    Item GenerateISO()
+    {
+        return new OtherItem()
+        {
+            ItemType = ItemTypeISO,
+            ItemOtherType = ItemOtherTypeISO,
+            ItemOtherBase = (ItemOtherBase)model.ItemOtherRuneISO,
+            Quantity = model.QuantityISO,
+            Name = model.ItemOtherRuneISO.GetDescription()
+        };
+    }
+
+    async Task OnClickAsync()
+    {
+        await _postService.CreatePostAsync(UserId!, GenerateFT(), GenerateISO());
+        _navigationManager.NavigateTo("/account", true);
+    }
+}

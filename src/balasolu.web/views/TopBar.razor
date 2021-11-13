@@ -1,0 +1,21 @@
+<div class="container-fluid">
+    <div class="d-flex flex-row flex-wrap justify-content-center align-content-center">
+        <a href="/" class="btn btn-primary p-1 m-1"><strong>balasolu</strong></a>
+        <a href="https://discord.gg/UJwxebvXZK" class="btn btn-secondary p-1 m-1">discord</a>
+        <AuthorizeView>
+            <Authorized>
+                <a href="/account" class="btn btn-secondary p-1 m-1">account</a>
+                <form method="post" action="/logout">
+                    <button class="btn btn-secondary p-1 m-1">logout</button>
+                </form>
+            </Authorized>
+            <NotAuthorized>
+                <a href="/login" class="btn btn-primary p-1 m-1">login</a>
+            </NotAuthorized>
+        </AuthorizeView>
+    </div>
+</div>
+
+@code {
+
+}

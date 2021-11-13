@@ -1,0 +1,42 @@
+namespace balasolu.models.enums.item.other
+{
+    public enum ItemOtherGem
+    {
+        Default,
+        ChippedAmethyst,
+        ChippedDiamond,
+        ChippedEmerald,
+        ChippedRuby,
+        ChippedSapphire,
+        ChippedSkull,
+        ChippedTopaz,
+        FlawedAmethyst,
+        FlawedDiamond,
+        FlawedEmerald,
+        FlawedRuby,
+        FlawedSapphire,
+        FlawedSkull,
+        FlawedTopaz,
+        Amethyst,
+        Diamond,
+        Emerald,
+        Ruby,
+        Sapphire,
+        Skull,
+        Topaz,
+        FlawlessAmethyst,
+        FlawlessDiamond,
+        FlawlessEmerald,
+        FlawlessRuby,
+        FlawlessSapphire,
+        FlawlessSkull,
+        FlawlessTopaz,
+        PerfectAmethyst,
+        PerfectDiamond,
+        PerfectEmerald,
+        PerfectRuby,
+        PerfectSapphire,
+        PerfectSkull,
+        PerfectTopaz
+    }
+}

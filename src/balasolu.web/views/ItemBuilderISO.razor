@@ -1,0 +1,57 @@
+﻿@inject IHttpContextAccessor _httpContextAccessor
+@inject UserManager<User> _userManager
+
+<div class="container-fluid">
+    <EditForm Model="model" class="d-flex flex-column justify-content-center align-content-center">
+        <p class="card-title text-center"><strong>choose an item type</strong></p>
+        <div class="d-flex flex-row justify-content-center justify-content-center">
+            <div class="text-center">
+                <InputSelect @bind-Value="@model.ItemTypeISO">
+                    @foreach (var value in Enum.GetValues<ItemType>())
+                    {
+                        <option value="@value">@value.GetDescription()</option>
+                    }
+                </InputSelect>
+            </div>
+        </div>
+        @if (model.ItemTypeISO == ItemType.Other)
+        {
+            <ItemOtherBuilderISO UserId="@UserId"
+                                 ItemTypeFT="@ItemTypeFT"
+                                 ItemOtherTypeFT="@ItemOtherTypeFT"
+                                 ItemOtherRuneFT="@ItemOtherRuneFT"
+                                 QuantityFT="@QuantityFT"
+                                 ItemTypeISO="@model.ItemTypeISO" />
+        }
+    </EditForm>
+</div>
+
+@code {
+    [Parameter]
+    public string? UserId { get; set; }
+
+    [Parameter]
+    public ItemType ItemTypeFT { get; set; }
+
+    [Parameter]
+    public ItemOtherType ItemOtherTypeFT { get; set; }
+
+    [Parameter]
+    public ItemOtherRune ItemOtherRuneFT { get; set; }
+
+    [Parameter]
+    public int QuantityFT { get; set; }
+
+    ItemBuilderISOModel model = new ItemBuilderISOModel();
+
+    class ItemBuilderISOModel
+    {
+        public ItemType ItemTypeISO { get; set; }
+        public bool Initialized { get; set; }
+    }
+
+    protected override void OnInitialized()
+    {
+        model.Initialized = true;
+    }
+}
