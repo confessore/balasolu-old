@@ -7,14 +7,16 @@ services:
         ports:
             - 3306:3306
         volumes:
+            - ./etc/mariadb/init.sql:/docker-entrypoint-initdb.d/init.sql
             - balasolu-db:/var/lib/mysql
         secrets:
+            - sql-password-root
             - sql-username
             - sql-password
         environment:
             - MARIADB_USER_FILE=/run/secrets/sql-username
             - MARIADB_PASSWORD_FILE=/run/secrets/sql-password
-            - MARIADB_ROOT_PASSWORD_FILE=/run/secrets/sql-password
+            - MARIADB_ROOT_PASSWORD_FILE=/run/secrets/sql-password-root
         restart: always
     
     web:
@@ -22,7 +24,7 @@ services:
             - mariadb
         build:
             context: .
-            dockerfile: web-release.Dockerfile
+            dockerfile: etc/docker/web-release.Dockerfile
         secrets:
             - sql-server
             - sql-username
@@ -34,8 +36,13 @@ services:
             - smtp-password
             - smtp-fromname
             - smtp-fromaddress
+            - twitter-key
+            - twitter-keysecret
+            - twitter-bearertoken
             - discord-clientid
             - discord-clientsecret
+            - paypal-clientid
+            - paypal-clientsecret
         environment:
             - APPLICATION__SQLCLIENTOPTIONS__SERVER=/run/secrets/sql-server
             - APPLICATION__SQLCLIENTOPTIONS__USERNAME=/run/secrets/sql-username
@@ -47,8 +54,15 @@ services:
             - APPLICATION__SMTPCLIENTOPTIONS__PASSWORD=/run/secrets/smtp-password
             - APPLICATION__SMTPCLIENTOPTIONS__FROMNAME=/run/secrets/smtp-fromname
             - APPLICATION__SMTPCLIENTOPTIONS__FROMADDRESS=/run/secrets/smtp-fromaddress
+            - APPLICATION__TWITTEROPTIONS__KEY=/run/secrets/twitter-key
+            - APPLICATION__TWITTEROPTIONS__KEYSECRET=/run/secrets/twitter-keysecret
+            - APPLICATION__TWITTEROPTIONS__BEARERTOKEN=/run/secrets/twitter-bearertoken
             - APPLICATION__DISCORDOPTIONS__CLIENTID=/run/secrets/discord-clientid
             - APPLICATION__DISCORDOPTIONS__CLIENTSECRET=/run/secrets/discord-clientsecret
+            - APPLICATION__PAYPALOPTIONS__CLIENTID=/run/secrets/paypal-clientid
+            - APPLICATION__PAYPALOPTIONS__CLIENTSECRET=/run/secrets/paypal-clientsecret
+        expose:
+            - 5000
         restart: always
 
     nginx:
@@ -57,13 +71,13 @@ services:
             - web
         build:
             context: .
-            dockerfile: nginx-release.Dockerfile
+            dockerfile: etc/docker/nginx-release.Dockerfile
         ports:
             - 80:80
             - 443:443
         volumes:
             - balasolu-ssl:/etc/letsencrypt
-        restart: always
+        restart: always 
 
 secrets:
     sql-server:
@@ -72,6 +86,8 @@ secrets:
         file: secrets/sql-username
     sql-password:
         file: secrets/sql-password
+    sql-password-root:
+        file: secrets/sql-password-root
     sql-database:
         file: secrets/sql-database
     smtp-host:
@@ -86,10 +102,20 @@ secrets:
         file: secrets/smtp-fromname
     smtp-fromaddress:
         file: secrets/smtp-fromaddress
+    twitter-key:
+        file: secrets/twitter-key
+    twitter-keysecret:
+        file: secrets/twitter-keysecret
+    twitter-bearertoken:
+        file: secrets/twitter-bearertoken
     discord-clientid:
         file: secrets/discord-clientid
     discord-clientsecret:
         file: secrets/discord-clientsecret
+    paypal-clientid:
+        file: secrets/paypal-clientid
+    paypal-clientsecret:
+        file: secrets/paypal-clientsecret
         
 volumes:
     balasolu-db:

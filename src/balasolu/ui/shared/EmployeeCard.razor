@@ -1,0 +1,61 @@
+<div class="card m-1" style="width: 18rem;">
+    <div class="card-header">
+        <div class="d-flex flex-row justify-content-start align-content-center m-1 p-1">
+            <h3 class="card-title"><strong>@Title</strong></h3>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="d-flex flex-row justify-content-center align-content-center m-1 p-1">
+            <a href="@Href"><img src="@Source" class="card-img-top" alt="@Description1" style="object-fit: contain;" /></a>
+        </div>
+        <hr />
+        @if (!string.IsNullOrEmpty(Description1))
+        {
+            <div class="d-flex flex-row justify-content-start align-content-center m-1 p-1">
+                <p class="card-text">@Description1</p>
+            </div>
+        }
+        @if (!string.IsNullOrEmpty(Description2))
+        {
+            <div class="d-flex flex-row justify-content-start align-content-center m-1 p-1">
+                <p class="card-text">@Description2</p>
+            </div>
+        }
+        @if (!string.IsNullOrEmpty(Description3))
+        {
+            <div class="d-flex flex-row justify-content-start align-content-center m-1 p-1">
+                <p class="card-text">@Description3</p>
+            </div>
+        }
+        @if (!string.IsNullOrEmpty(Description4))
+        {
+            <div class="d-flex flex-row justify-content-start align-content-center m-1 p-1">
+                <p class="card-text">@Description4</p>
+            </div>
+        }
+    </div>
+    <div class="card-footer">
+        <div class="d-flex flex-row justify-content-end align-content-center m-1 p-1">
+            <div class="d-flex flex-column justify-content-center align-content-center">
+                <a href="@Href" class="btn btn-primary stretched-link">learn more</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string? Title { get; set; }
+    [Parameter]
+    public string? Description1 { get; set; }
+    [Parameter]
+    public string? Description2 { get; set; }
+    [Parameter]
+    public string? Description3 { get; set; }
+    [Parameter]
+    public string? Description4 { get; set; }
+    [Parameter]
+    public string? Source { get; set; }
+    [Parameter]
+    public string? Href { get; set; }
+}

@@ -1,0 +1,39 @@
+<div class="d-flex justify-content-center">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">name</th>
+          <th scope="col">price</th>
+          <th scope="col">actions</th>
+        </tr>
+      </thead>
+      <tbody>
+          @if (model.Products != null)
+            {
+                @foreach (var product in model.Products)
+                {
+                    <tr>
+                        <td>
+                            <span class="d-inline-block text-truncate" style="max-width: 100px;">
+                                @product.Name
+                            </span>
+                        </td>
+                        <td>
+                            <span class="d-inline-block text-truncate" style="max-width: 100px;">
+                                @product.Price
+                            </span>
+                        </td>
+                        <td>
+                            <button class="badge rounded-pill bg-primary">edit</button>
+                            <button class="badge rounded-pill bg-danger">delete</button>
+                        </td>
+                    </tr>
+                }
+
+            }
+       </tbody>
+    </table>
+</div>
+<div class="d-flex justify-content-end">
+    <button type="submit" class="btn btn-primary">settings</button>
+</div>

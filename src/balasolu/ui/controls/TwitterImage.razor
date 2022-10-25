@@ -1,0 +1,21 @@
+﻿@inject IAtomService _atomService;
+
+<img src="@model.Source" />
+
+@code{
+    [Parameter]
+    public string? Id { get; set; }
+
+    class Model
+    {
+        public string? Source { get; set; }
+    }
+
+    Model model = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        model.Source = await _atomService.GetTwitterUsernameFromId(Id);
+        await OnInitializedAsync();
+    }
+}

@@ -1,0 +1,34 @@
+﻿<div class="card m-1" style="width: 22.5rem;">
+    <div class="card-header">
+        <div class="d-flex my-1 py-1">
+            <div class="d-flex flex-column me-1">
+                <img src="@ImageSource" class="card-img-top rounded-circle" style="max-height: 75px; max-width: 75px; object-fit: contain;" />
+            </div>
+            <div class="d-flex flex-column justify-content-center ms-1">
+                <strong><span class="oi oi-chevron-right"></span> @Title</strong>
+                <strong><span class="oi oi-clock"></span> @Timestamp</strong>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <p class="card-text">@((MarkupString)@Content!)</p>
+    </div>
+    <div class="card-footer">
+        <div class="d-flex justify-content-end">
+            <a href="@Href" target="_blank" class="btn btn-primary stretched-link">go to this</a>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string? Title { get; set; }
+    [Parameter]
+    public string? Content { get; set; }
+    [Parameter]
+    public string? Timestamp { get; set; }
+    [Parameter]
+    public string? ImageSource { get; set; }
+    [Parameter]
+    public string? Href { get; set; }
+}

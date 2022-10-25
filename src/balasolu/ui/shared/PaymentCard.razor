@@ -1,0 +1,36 @@
+@using Microsoft.AspNetCore.Components.Forms;
+
+<div class="container-fluid">
+    <div class="d-flex flex-column justify-content-center align-content-center m-1 p-1">
+        <div class="d-flex flex-row justify-content-center align-content-center m-1 p-1">
+            <h3 class="text-center"><strong>payment</strong></h3>
+        </div>
+        <hr />
+        <div class="d-flex flex-row justify-content-center align-content-center m-1 p-1">
+            <EditForm Model="@model" class="d-flex flex-column justify-content-center align-content-center">
+                <div class="d-flex flex-row justify-content-center align-content-center">
+                    <InputText class="m-1 p-1" @bind-Value="model.FirstName" placeholder="first name" />
+                    <InputText class="m-1 p-1" @bind-Value="model.LastName" placeholder="last name" />
+                </div>
+                <InputText class="m-1 p-1" @bind-Value="model.BillingAddress1" placeholder="billing1" />
+                <InputText class="m-1 p-1" @bind-Value="model.BillingAddress2" placeholder="billing2" />
+                @*<button class="btn btn-primary m-1 p-1" @onclick="async () => await OnClicked()">authorize payment</button>*@
+            </EditForm>
+        </div>
+        <div class="d-flex flex-row justify-content-center align-content-center m-1 p-1">
+
+        </div>
+    </div>
+</div>
+
+@code {
+    Model model = new();
+
+    class Model
+    {
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+        public string? BillingAddress1 { get; set; }
+        public string? BillingAddress2 { get; set; }
+    }
+}

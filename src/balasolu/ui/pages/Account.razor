@@ -1,0 +1,136 @@
+@page "/account"
+@inject AuthenticationStateProvider _authentictionStateProvider;
+
+<div class="d-flex flex-column">
+    <div class="d-flex flex-wrap justify-content-center my-1 py-1">
+        <AuthorizeView>
+            <Authorized>
+                <div class="d-flex justify-content-center my-1 py-1">
+                    <h3>welcome, @model.Name</h3>
+                </div>
+                <div class="d-flex flex-column w-100">
+                    <div class="d-flex justify-content-center my-1">
+                        <ul class="nav nav-pills">
+                            <li class="nav-item">
+                                <button class="@MainClass" @onclick="OnMainClicked">main</button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="@BoothClass" @onclick="OnBoothClicked">booth</button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="@SettingsClass" @onclick="OnSettingsClicked">settings</button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="nav-link disabled" tabindex="-1">disabled</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="d-flex justify-content-center my-1">
+                        @if (model.MainActive)
+                        {
+                            <div class="card text-center w-100">
+                                <div class="card-header">
+                                    main
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">main title</h5>
+                                    <p class="card-text">main description</p>
+                                    <a href="/" class="btn btn-primary">do something</a>
+                                </div>
+                                <div class="card-footer text-muted">
+                                    2 days ago
+                                </div>
+                            </div>
+                        }
+                        @if (model.BoothActive)
+                        {
+                            <BoothComponent />
+                        }
+                        @if (model.SettingsActive)
+                        {
+                            <div class="card text-center w-100">
+                                <div class="card-header">
+                                    settings
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">settings title</h5>
+                                    <p class="card-text">settings description</p>
+                                    <a href="/" class="btn btn-primary">do something</a>
+                                </div>
+                                <div class="card-footer text-muted">
+                                    2 days ago
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </Authorized>
+            <NotAuthorized> 
+                <div class="d-flex justify-content-center my-1">
+                    <a class="btn btn-secondary m-1" href="/register">need account?</a>
+                    <a class="btn btn-secondary m-1" href="/login">have account?</a>
+                    <a class="btn btn-secondary m-1" href="/reset">can't log in?</a>
+                </div>
+            </NotAuthorized>
+        </AuthorizeView>
+    </div>
+</div>
+
+@code{
+    Model model = new();
+
+    class Model
+    {
+        public string? Name { get; set; }
+        public bool MainActive { get; set; } = true;
+        public bool BoothActive { get; set; }
+        public bool SettingsActive { get; set; }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authenticationState = await _authentictionStateProvider.GetAuthenticationStateAsync();
+        if (authenticationState.User.Identity != null)
+            model.Name = authenticationState.User.Identity.Name;
+        await base.OnInitializedAsync();
+    }
+
+    public string? MainClass =>
+    model.MainActive ? "nav-link active" : "nav-link";
+
+    public string? BoothClass =>
+        model.BoothActive ? "nav-link active" : "nav-link";
+
+    public string? SettingsClass =>
+        model.SettingsActive ? "nav-link active" : "nav-link";
+
+    void OnMainClicked()
+    {
+        if (!model.MainActive)
+        {
+            model.MainActive = !model.MainActive;
+            model.BoothActive = false;
+            model.SettingsActive = false;
+        }
+    }
+
+    void OnBoothClicked()
+    {
+        if (!model.BoothActive)
+        {
+            model.MainActive = false;
+            model.BoothActive = !model.BoothActive;
+            model.SettingsActive = false;
+        }
+    }
+
+    void OnSettingsClicked()
+    {
+        if (!model.SettingsActive)
+        {
+            model.MainActive = false;
+            model.BoothActive = false;
+            model.SettingsActive = !model.SettingsActive;
+        }
+    }
+}

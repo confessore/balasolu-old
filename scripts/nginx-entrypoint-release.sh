@@ -25,6 +25,6 @@ else
     echo "SSL Config Copied!"
 fi
 echo "Scheduling Cron Job..."
-echo "0 23 * * * certbot renew --quiet" | crontab -
+echo "0 23 * * * root certbot -q renew --pre-hook='systemctl stop nginx' --post-hook='systemctl start nginx'" | crontab -
 echo "Cron Job Scheduled!"
 nginx -g 'daemon off;'

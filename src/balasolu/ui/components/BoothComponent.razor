@@ -1,0 +1,58 @@
+<div class="card w-100">
+    <div class="card-header">
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            actions
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><button class="dropdown-item" @onclick="OnAddClicked"><span class="oi oi-plus pe-3" aria-hidden="true"></span>add product</button></li>
+            <li><button class="dropdown-item" @onclick="OnManageClicked"><span class="oi oi-eye pe-3" aria-hidden="true"></span>manage products</button></li>
+            <li><button class="dropdown-item" @onclick="OnSettingsClicked"><span class="oi oi-cog pe-3" aria-hidden="true"></span>settings</button></li>
+        </ul>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="p-1">
+            @if (model.IsVendorUser)
+            {
+                if (model.BoothExists)
+                {
+                    <div class="d-flex justify-content-center">
+                        <h5 class="card-title">booth title</h5>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <p class="card-text">booth description</p>
+                    </div>
+                    @if (model.AddActive)
+                    {
+                        <BoothAddProduct />
+                    }
+                    @if (model.ManageActive)
+                    {
+                        <BoothManageProducts />
+                    }
+                    @if (model.SettingsActive)
+                    {
+                        <BoothSettings />
+                    }
+                }
+                else
+                {
+                    <div class="d-flex justify-content-center m-1">
+                        <p>no booth exists</p>
+                    </div>
+                    <BoothEdit />
+                }
+            }
+            else
+            {
+                <p>your user type is not vendor user</p>
+            }
+        </div>
+    </div>
+    <div class="card-footer text-muted">
+        <button class="badge rounded-pill bg-primary">add</button>
+        <button class="badge rounded-pill bg-primary">edit</button>
+        <button class="badge rounded-pill bg-danger">delete</button>
+    </div>
+</div>

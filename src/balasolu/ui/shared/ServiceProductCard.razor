@@ -1,0 +1,62 @@
+﻿<div class="card m-1" style="width: 18rem;">
+    <div class="card-header">
+        <div class="d-flex justify-content-center align-content-center m-1 p-1">
+            <img src="@ImageSource" class="card-img-top" alt="@Description" style="max-width: 256px; min-height: 96px; max-height: 96px; object-fit: scale-down;" />
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="d-flex justify-content-start align-content-center m-1 p-1">
+            <h3 class="card-title"><strong>@Name</strong></h3>
+        </div>
+        <div class="d-flex justify-content-end align-content-center m-1 p-1">
+            <p class="card-text">starting at only <strong>$@Math.Ceiling(Price)</strong></p>
+        </div>
+        <hr />
+        <div class="d-flex justify-content-between align-content-center m-1 p-1">
+            <p class="card-text">@Description</p>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="d-flex justify-content-end align-content-center m-1 p-1">
+            <div class="d-flex flex-column justify-content-center align-content-center">
+                <!-- button -->
+                <button type="button" class="btn btn-primary stretched-link" data-bs-toggle="modal" data-bs-target="#@modalId()">learn more</button>
+                <!-- modal -->
+                <div class="modal fade" id="@modalId()" tabindex="-1" aria-labelledby="@modalLabel()" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" style="min-width: 65%; min-height: 65%;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="@modalLabel()">@Name</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <img src="@ImageSource" class="card-img-top" alt="@Description" style="object-fit: fill;" />
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string? Name { get; set; }
+    [Parameter]
+    public string? Description { get; set; }
+    [Parameter]
+    public string? ImageSource { get; set; }
+    [Parameter]
+    public decimal Price { get; set; }
+    [Parameter]
+    public string? Id { get; set; }
+
+    string modalId() =>
+        $"Modal{Id!.Replace("-", "")}";
+    string modalLabel() =>
+        $"ModalLabel{Id!.Replace("-", "")}";
+}

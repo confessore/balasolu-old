@@ -1,0 +1,9 @@
+.bg {
+    background-color: rebeccapurple;
+}
+
+.sticky {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}

@@ -1,0 +1,90 @@
+@page "/technologies"
+
+<div class="d-flex flex-column">
+    <div class="d-flex justify-content-center my-1 py-1">
+        <h3>technologies we use</h3>
+    </div>
+    <div class="d-flex flex-wrap justify-content-center my-1 py-1">
+        <TechnologyCard
+            Title="windows"
+            Description="microsoft windows, commonly referred to as windows, is a group of several proprietary graphical operating system families, all of which are developed and marketed by microsoft. each family caters to a certain sector of the computing industry"
+            ImageSource="/images/windows.svg"
+            Href="https://www.microsoft.com/en-us/windows?r=1" />
+        <TechnologyCard
+            Title="android"
+            Description="android is a mobile operating system based on a modified version of the Linux kernel and other open source software, designed primarily for touchscreen mobile devices such as smartphones and tablets"
+            ImageSource="/images/android.svg"
+            Href="https://www.android.com" />
+        <TechnologyCard
+            Title="ios"
+            Description="ios is a mobile operating system created and developed by apple inc. exclusively for its hardware. it is the operating system that powers many of the company's mobile devices, including the iphone and ipod touch"
+            ImageSource="/images/apple.svg"
+            Href="https://www.apple.com/ios/ios-15" />
+        <TechnologyCard
+            Title="linux"
+            Description="linux is a family of open-source unix-like operating systems based on the linux kernel, an operating system kernel first released on september 17, 1991, by linus torvalds. linux is typically packaged in a linux distribution such as ubuntu"
+            ImageSource="/images/tux.svg"
+            Href="https://ubuntu.com" />
+        <TechnologyCard
+            Title="c#"
+            Description="c# is a general-purpose, multi-paradigm programming language. c# encompasses static typing, strong typing, lexically scoped, imperative, declarative, functional, generic, object-oriented, and component-oriented programming disciplines"
+            ImageSource="/images/cs.svg"
+            Href="https://docs.microsoft.com/en-us/dotnet/csharp" />
+        <TechnologyCard
+            Title="c++"
+            Description="c++ is a general-purpose programming language created by bjarne stroustrup as an extension of the c programming language, or 'c with classes'"
+            ImageSource="/images/cpp.svg"
+            Href="https://www.cplusplus.com" />
+        <TechnologyCard
+            Title="rust"
+            Description="rust is a multi-paradigm, general-purpose programming language designed for performance and safety, especially safe concurrency. rust is syntactically similar to c++, but can guarantee memory safety by using a borrow checker to validate references"
+            ImageSource="/images/rust.svg"
+            Href="https://www.rust-lang.org" />
+        <TechnologyCard
+            Title=".net"
+            Description=".net is a free and open-source, managed computer software framework for windows, linux, and macos operating systems. it is a cross-platform successor to .net framework. the project is primarily developed by microsoft employees by way of the .net foundation, and released under the mit license"
+            ImageSource="/images/dotnet.svg"
+            Href="https://dotnet.microsoft.com/en-us" />
+        <TechnologyCard
+            Title="blazor"
+            Description="blazor is a free and open-source web framework that enables developers to create web apps using c# and html. it is being developed by microsoft"
+            ImageSource="/images/blazor.svg"
+            Href="https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor" />
+        <TechnologyCard
+            Title="xamarin"
+            Description="xamarin is a microsoft-owned san francisco-based software company founded in may 2011 by the engineers that created mono, xamarin.android and xamarin.ios, which are cross-platform implementations of the common language infrastructure and common language specifications"
+            ImageSource="/images/xamarin.svg"
+            Href="https://dotnet.microsoft.com/en-us/apps/xamarin" />
+        <TechnologyCard
+            Title="azure"
+            Description="microsoft azure, often referred to as azure, is a cloud computing service operated by microsoft for application management via microsoft-managed data centers"
+            ImageSource="/images/azure.svg"
+            Href="https://azure.microsoft.com/en-us" />
+        <TechnologyCard
+            Title="nginx"
+            Description="nginx is a web server that can also be used as a reverse proxy, load balancer, mail proxy and http cache. the software was created by igor sysoev and publicly released in 2004. nginx is free and open-source software, released under the terms of the 2-clause bsd license"
+            ImageSource="/images/nginx.svg"
+            Href="https://www.nginx.com" />
+        <TechnologyCard
+            Title="lets encrypt"
+            Description="let's encrypt is a non-profit certificate authority run by internet security research group that provides x.509 certificates for transport layer security encryption at no charge"
+            ImageSource="/images/le.svg"
+            Href="https://letsencrypt.org" />
+        <TechnologyCard
+            Title="mariadb"
+            Description="mariadb is a community-developed, commercially supported fork of the mysql relational database management system, intended to remain free and open-source software under the gnu general public license"
+            ImageSource="/images/mariadb.svg"
+            Href="https://mariadb.org" />
+        <TechnologyCard
+            Title="docker"
+            Description="docker is a set of platform as a service products that use os-level virtualization to deliver software in packages called containers. containers are isolated from one another and bundle their own software, libraries and configuration files; they can communicate with each other through well-defined channels"
+            ImageSource="/images/docker.svg"
+            Href="https://www.docker.com" />
+        <TechnologyCard
+            Title="paypal"
+            Description="paypal holdings, inc. is an american multinational financial technology company operating an online payments system in the majority of countries that support online money transfers, and serves as an electronic alternative to traditional paper methods such as checks and money orders"
+            ImageSource="/images/paypal.svg"
+            Href="https://www.paypal.com/us/home" />
+    </div>
+    <AtomEntries />
+</div>

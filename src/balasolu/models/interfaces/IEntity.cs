@@ -1,5 +1,3 @@
-using System;
-
 namespace balasolu.models.interfaces
 {
     public interface IEntity<TKey>

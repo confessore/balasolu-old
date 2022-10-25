@@ -1,0 +1,35 @@
+<div class="d-flex flex-wrap justify-content-center">
+    <div class="d-flex flex-column m-1">
+        <div class="d-flex justify-content-center">
+            <div class="d-flex flex-column">
+                <label class="form-label">name</label>
+                <input type="text" class="form-control" @onchange="OnNameChanged" />
+                <div class="form-text">16 characters max</div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <div class="d-flex flex-column">
+                <label class="form-label">description</label>
+                <input type="text" class="form-control" @onchange="OnDescriptionChanged" />
+                <div class="form-text">255 characters max</div>
+            </div>
+        </div>
+        <div class="d-flex flex-column">
+            <label class="form-label">image source</label>
+            <input type="text" class="form-control" @onchange="OnImageSourceChanged" />
+            <div id="emailHelp" class="form-text">should be a http url</div>
+        </div>
+        <div class="d-flex flex-column">
+            <label class="form-label">price</label>
+            <input type="number" class="form-control" @onchange="OnPriceChanged" />
+            <div class="form-text">decimal form</div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <input type="checkbox" class="form-check-input" />
+            <label class="form-check-label">yes?</label>
+        </div>
+    </div>
+</div>
+<div class="d-flex justify-content-end">
+    <button type="submit" class="btn btn-primary" @onclick="OnClicked">submit</button>
+</div>

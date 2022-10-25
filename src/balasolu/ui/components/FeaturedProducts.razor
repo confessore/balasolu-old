@@ -1,0 +1,16 @@
+<div class="d-flex flex-wrap justify-content-center my-1 py-1">
+    @if (model.Products != null)
+    {
+        @foreach (var product in model.Products)
+        {
+            if (product.ProductType == ProductType.Default)
+            {
+                <DefaultProductCard
+                    Name="@product.Name"
+                    Id="@product.Id"
+                    Description="@product.Description"
+                    ImageSource="@product.ImageSource" />
+            }
+        }
+    }
+</div>

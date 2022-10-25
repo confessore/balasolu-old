@@ -1,0 +1,30 @@
+﻿@page "/"
+@attribute [AllowAnonymous]
+@inject IMarketService _marketService;
+@inject NavigationManager _navigationManager;
+
+<div class="d-flex flex-column">
+    <div class="d-flex justify-content-center my-1 py-1">
+        <div class="alert alert-success text-center mx-1 px-1" role="alert">
+            some representatives may be missing due to their
+            twitter accounts being suspended for serious rule breaking such as inciting violence
+        </div>
+        @*<button @onclick="async () => await DonateAsync()">donate</button>*@
+    </div>
+    <TwitterEntries />
+    <AtomEntries />
+</div>
+
+@code{
+    public async Task DonateAsync()
+    {
+        var order = await _marketService.CreateOrderAsync();
+        var link = order.Links.FirstOrDefault(x => x.Rel == "approve");
+        if (link != null)
+        {
+            _navigationManager.NavigateTo(link.Href);
+            //order = await _marketService.CaptureOrderAsync(order.Id);
+            //Log.Information(order.Status);
+        }
+    }
+}

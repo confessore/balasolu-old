@@ -1,0 +1,17 @@
+@page "/product/{id?}"
+
+<h3>Product</h3>
+
+@Id
+
+@code {
+    [Parameter]
+    public string? Id { get; set; }
+
+    Model model = new();
+
+    class Model
+    {
+        public string? Id { get; set; }
+    }
+}
